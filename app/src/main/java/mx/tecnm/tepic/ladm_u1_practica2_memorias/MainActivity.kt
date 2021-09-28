@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     fun metodoInsertar(nombre: String, contenido: String) {
 
-        val listaDatos = findViewById<ListView>(R.id.linearDatos)
+
         val DatosPersona: Data = Data()
 
         DatosPersona.nombre = nombre
@@ -72,7 +72,9 @@ class MainActivity : AppCompatActivity() {
         vector.add(DatosPersona)
         nombres.add(nombre)
 
+        val listaDatos = findViewById<ListView>(R.id.linearDatos)
         val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, nombres)
+
         listaDatos.adapter = adaptador
     }
 
@@ -97,13 +99,12 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(applicationContext,"data save",Toast.LENGTH_SHORT).show()
     }
 
-    fun leerDesdeSD(){
+    fun leerDesdeSD(): Boolean{
         try {
-
             var myExternalFile: File?=null
-            myExternalFile = File(getExternalFilesDir(filepath), "archivo.txt")
+            myExternalFile = File(getExternalFilesDir(filepath), "archivoTodos.txt")
 
-            val filename = "archivo.txt"
+            val filename = "archivoTodos.txt"
             myExternalFile = File(getExternalFilesDir(filepath),filename)
             if(filename.toString()!=null && filename.toString().trim()!="") {
                 var fileInputStream = FileInputStream(myExternalFile)
@@ -118,10 +119,16 @@ class MainActivity : AppCompatActivity() {
                 //Displaying data on EditText
                 Toast.makeText(applicationContext, stringBuilder.toString(), Toast.LENGTH_SHORT).show()
 
-                nombres.add(stringBuilder.toString())
+                nombres.add(stringBuilder.split(",").toString())
+                val listaDatos = findViewById<ListView>(R.id.linearDatos)
+                val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, nombres)
+                listaDatos.adapter = adaptador
+
             }
+            return true;
         } catch (io:Exception){
-            nombres.add("Nota prueba")
+            Toast.makeText(this, "No hay datos", Toast.LENGTH_SHORT).show()
+            return false;
         }
     }
 
