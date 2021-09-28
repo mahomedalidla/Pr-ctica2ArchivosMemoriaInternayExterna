@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@drawable/blur">
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="Notas"/>
+
+    <EditText
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:id="@+id/txtnombre"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:hint="Nota"
+        android:background="@drawable/esquinasredondas"
+        android:id="@+id/txtcontenido"
+        android:textColor="@color/black"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:padding="5dp"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:layout_marginRight="120dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="🗑"
+            android:id="@+id/delete"
+            android:background="@drawable/esquinasredondas"/>
+
+    <Button
+        android:layout_marginTop="-45dp"
+        android:layout_gravity="center"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:text="G"
+        android:id="@+id/guardartxt"
+        android:background="@drawable/esquinasredondas"/>
+
+    <Button
+        android:layout_gravity="end"
+        android:layout_marginTop="-45dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:text="➕"
+        android:id="@+id/save"
+        android:background="@drawable/esquinasredondas"/>
+
+
+    </LinearLayout>
+        <ListView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/linearDatos"
+            />
+
+</LinearLayout>
+
