@@ -86,10 +86,7 @@ class MainActivity : AppCompatActivity() {
         try {
             val fileOutPutStream = FileOutputStream(myExternalFile)
             fileOutPutStream.write(nombres.toString().toByteArray()) //Error
-            Log.d("myTag", "This is my message metodo");
-            for ((posicion, valor) in nombres.withIndex()) {
-                println("La posición en metodo $posicion contiene el valor $valor")
-            }
+
             fileOutPutStream.close()
             return true
         } catch (e: IOException) {
@@ -119,7 +116,6 @@ class MainActivity : AppCompatActivity() {
                 //Displaying data on EditText
                 Toast.makeText(applicationContext, stringBuilder.toString(), Toast.LENGTH_SHORT).show()
 
-                nombres.add(stringBuilder.split(",").toString())
                 val listaDatos = findViewById<ListView>(R.id.linearDatos)
                 val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, nombres)
                 listaDatos.adapter = adaptador
@@ -137,27 +133,30 @@ class MainActivity : AppCompatActivity() {
     private fun metodoEliminar() {
         var nombre = EditText(this)
         nombre.inputType = InputType.TYPE_CLASS_TEXT
-        nombre.setHint("nombre de nota a eliminar")
+        nombre.setHint("Eliminar nota")
 
-        //try {
-        AlertDialog.Builder(this)
-            .setTitle("Eliminar")
-            .setMessage("Cual id se eliminara?")
-            .setView(nombre)
-            .setPositiveButton("Eliminar") { d, i ->
-                vector.forEach {
-                    if (it.nombre == nombre.text.toString()) {
-                        vector.remove(it)
-                        nombres.remove(it.nombre)
+        try {
+            AlertDialog.Builder(this)
+                .setTitle("Eliminar")
+                .setMessage("Cual es el nombre que se eliminara?")
+                .setView(nombre)
+                .setPositiveButton("Eliminar") { d, i ->
+                    vector.forEach {
+                        if (it.nombre == nombre.text.toString()) {
+                            vector.remove(it)
+                            nombres.remove(it.nombre)
+                        }
                     }
+                    d.dismiss()
                 }
-                d.dismiss()
-            }
-            .setNegativeButton("Cancelar") { d, i ->
-                d.cancel()
-            }
-            .show()
-        metodoGuardar()
+                .setNegativeButton("Cancelar") { d, i ->
+                    d.cancel()
+                }
+                .show()
+            metodoGuardar()
+        }catch (e: IOException) {
+            Toast.makeText(this, "No no se pudo eliminar", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

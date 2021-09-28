@@ -54,9 +54,10 @@
     <Button
         android:layout_marginTop="-45dp"
         android:layout_gravity="center"
-        android:layout_width="45dp"
+        android:layout_width="50dp"
         android:layout_height="45dp"
-        android:text="G"
+        android:textSize="15sp"
+        android:text="💾"
         android:id="@+id/guardartxt"
         android:background="@drawable/esquinasredondas"/>
 
